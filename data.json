@@ -1,5 +1,6 @@
 {
  "activity": [
+  "2026-10-14T19:04:45-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81561 (bid 81552.61 / ask 81569.95; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:58:16-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no fills, no positions. BTC-USDT ~81682 (bid 81675.29 / ask 81688.37; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:55:54-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81766 (bid 81757.87 / ask 81773.99; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:48:56-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no fills, no positions. BTC-USDT ~81740 (bid 81731.61 / ask 81749.16; above 200D EMA ~74.9k, no regime flip). No action.",
@@ -13,8 +14,7 @@
   "2026-10-14T18:07:08-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T18:04:55-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:58:02-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:52:48-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:50:51-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
+  "2026-10-14T17:52:48-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
  ],
  "drawdown_pct": 0.0,
  "equity": 97.78,
@@ -103,11 +103,16 @@
    "equity": 97.78,
    "reserve": 0.0,
    "ts": "2026-10-14T18:58:16-07:00"
+  },
+  {
+   "equity": 97.78,
+   "reserve": 0.0,
+   "ts": "2026-10-14T19:04:45-07:00"
   }
  ],
  "fees_paid": 0.0,
  "goal": 1000000,
- "last_scan": "2026-10-14T18:58:16-07:00",
+ "last_scan": "2026-10-14T19:04:45-07:00",
  "positions": [],
  "quote": "USDT",
  "regime": "RISK-ON",
@@ -116,7 +121,16 @@
  "start_equity": 97.78,
  "status": "active",
  "strategy_changes": [
-  "2026-10-14T16:37:36-07:00: Ledger fix: day_start_equity corrected from 100.0 to 97.78 (actual funded USDT) so the 5% daily-loss pause is measured correctly. Added last_scan / last_4h_candle_evaluated fields so 5-minute runs only do full setup scans on new 4h closes."
+  {
+   "change": "Evaluated Raj's regression-channel methods (15m v1 interpretation + exact 3-TF 1m scalp spec); NOT adopted",
+   "files": [
+    "strategy_channel.py",
+    "strategy_scalp.py",
+    "data/bt_scalp.json"
+   ],
+   "reason": "60d 1m backtest BTC/ETH/SOL/XRP: avg gross edge ~0.01%/trade vs 1.25-1.7% fees; -14 to -15% and -15% HALT in both train and holdout, market and limit entry. v1 (4h/1d) remains live.",
+   "ts": "2026-10-14T19:20:00-07:00"
+  }
  ],
  "total": 97.78,
  "trades": [],
