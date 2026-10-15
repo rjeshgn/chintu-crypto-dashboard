@@ -1,5 +1,6 @@
 {
  "activity": [
+  "2026-10-14T18:34:59-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81,790. No action.",
   "2026-10-14T18:29:22-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no fills, no positions. BTC-USDT ~81,517 (bid 81,504.73 / ask 81,529.18; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:21:52-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no fills, no positions. BTC-USDT ~81,690 (above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:18:12-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
@@ -13,8 +14,7 @@
   "2026-10-14T17:37:43-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:32:33-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:26:59-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:19:59-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:17:36-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
+  "2026-10-14T17:19:59-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
  ],
  "drawdown_pct": 0.0,
  "equity": 97.78,
@@ -73,11 +73,16 @@
    "equity": 97.78,
    "reserve": 0.0,
    "ts": "2026-10-14T18:29:22-07:00"
+  },
+  {
+   "equity": 97.78,
+   "reserve": 0.0,
+   "ts": "2026-10-14T18:34:59-07:00"
   }
  ],
  "fees_paid": 0.0,
  "goal": 1000000,
- "last_scan": "2026-10-14T18:29:22-07:00",
+ "last_scan": "2026-10-14T18:34:59-07:00",
  "positions": [],
  "quote": "USDT",
  "regime": "RISK-ON",
