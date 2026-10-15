@@ -1,5 +1,6 @@
 {
  "activity": [
+  "2026-10-14T18:55:54-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81766 (bid 81757.87 / ask 81773.99; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:48:56-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no fills, no positions. BTC-USDT ~81740 (bid 81731.61 / ask 81749.16; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:45:26-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81820 (bid 81809.86 / ask 81831.13; above 200D EMA ~74.9k, no regime flip). No action.",
   "2026-10-14T18:38:11-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. BTC-USDT ~81841 (bid 81829.6 / ask 81852.08; above 200D EMA ~74.9k, no regime flip). No action.",
@@ -13,8 +14,7 @@
   "2026-10-14T17:58:02-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:52:48-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:50:51-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:42:21-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T17:37:43-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
+  "2026-10-14T17:42:21-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action."
  ],
  "drawdown_pct": 0.0,
  "equity": 97.78,
@@ -93,11 +93,16 @@
    "equity": 97.78,
    "reserve": 0.0,
    "ts": "2026-10-14T18:48:56-07:00"
+  },
+  {
+   "equity": 97.78,
+   "reserve": 0.0,
+   "ts": "2026-10-14T18:55:54-07:00"
   }
  ],
  "fees_paid": 0.0,
  "goal": 1000000,
- "last_scan": "2026-10-14T18:48:56-07:00",
+ "last_scan": "2026-10-14T18:55:54-07:00",
  "positions": [],
  "quote": "USDT",
  "regime": "RISK-ON",
