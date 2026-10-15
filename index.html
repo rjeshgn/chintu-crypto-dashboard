@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chintu Crypto Bot</title><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<style>
+:root{--bg:#0b0f17;--card:#141a26;--b:#232c3d;--t:#e6ebf5;--m:#8b96ab;--g:#22c55e;--r:#ef4444;--a:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:1100px;margin:auto;padding:16px}h1{font-size:20px;margin:0}h2{font-size:15px;margin:0 0 10px;color:var(--m);font-weight:600}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.sub{color:var(--m);font-size:12px}.pill{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--b);border-radius:12px;padding:14px;margin-bottom:12px}
+.k{margin:0}.k .l{color:var(--m);font-size:12px}.k .v{font-size:22px;font-weight:700;margin-top:4px}
+.pos{color:var(--g)}.neg{color:var(--r)}.bar{height:10px;background:#0e1420;border-radius:6px;overflow:hidden;border:1px solid var(--b)}
+.bar>div{height:100%;background:linear-gradient(90deg,#3b82f6,#22c55e)}
+.tg button{background:#0e1420;color:var(--t);border:1px solid var(--b);padding:4px 10px;border-radius:6px;cursor:pointer}.tg button.on{background:var(--a);color:#000}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 8px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap}
+th{color:var(--m);cursor:pointer;user-select:none}.empty{color:var(--m);padding:10px 0}ul{margin:0;padding-left:18px}li{margin:6px 0;color:#c8d0df}
+.ch{height:300px}</style></head><body><div class="w">
+<div class="top"><div><h1>Chintu Crypto Bot · $100 → $1M</h1><div class="sub">Last updated <span id="upd">…</span> · auto-refresh 60s</div></div><span id="st" class="pill"></span></div>
+<div class="grid" id="kpis"></div>
+<div class="card"><div class="top" style="margin:0 0 8px"><h2 style="margin:0">Equity curve</h2><div class="tg"><button id="lin" class="on">Linear</button> <button id="log">Log</button></div></div><div class="ch"><canvas id="c"></canvas></div></div>
+<div class="card"><h2>Progress to $1M (log scale)</h2><div class="bar"><div id="gb" style="width:0"></div></div><div class="sub" id="gt" style="margin-top:6px"></div></div>
+<div class="card"><h2>Open positions</h2><div class="tw" id="pos"></div></div>
+<div class="card"><h2>Trade log</h2><div class="tw" id="tr"></div></div>
+<div class="card"><h2>Strategy changes</h2><ul id="sc"></ul></div>
+<div class="card"><h2>Recent bot activity</h2><ul id="ac"></ul></div>
+<div class="sub">Spot only · bot capital only · not financial advice</div></div>
+<script>
+const $=id=>document.getElementById(id),PT={timeZone:'America/Los_Angeles'};
+const ft=s=>s?new Date(s).toLocaleString('en-US',{...PT,month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' PT':'—';
+const $$=v=>'$'+Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let chart,scale='linear',sortK=null,sortD=-1,D;
+function table(rows,el,sortable){if(!rows.length){el.innerHTML='<div class="empty">None yet</div>';return}
+ const ks=[...new Set(rows.flatMap(Object.keys))];if(sortable&&sortK)rows=[...rows].sort((a,b)=>(a[sortK]>b[sortK]?1:-1)*sortD);
+ el.innerHTML='<table><tr>'+ks.map(k=>`<th data-k="${k}">${esc(k)}${sortK==k?(sortD>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>'+rows.map(r=>'<tr>'+ks.map(k=>{let v=r[k];let c=/pnl/i.test(k)&&typeof v=='number'?(v>=0?'pos':'neg'):'';if(typeof v=='string'&&/^\d{4}-\d\d-\d\dT/.test(v))v=ft(v);return `<td class="${c}">${esc(typeof v=='object'?JSON.stringify(v):v)}</td>`}).join('')+'</tr>').join('')+'</table>';
+ if(sortable)el.querySelectorAll('th').forEach(th=>th.onclick=()=>{sortD=sortK==th.dataset.k?-sortD:-1;sortK=th.dataset.k;table(D.trades,el,true)})}
+function render(d){D=d;const s=(d.status||'').toUpperCase(),sc=s=='ACTIVE'?'#22c55e':s=='PAUSED'?'#f59e0b':'#ef4444';
+ $('st').textContent=s;$('st').style.background=sc+'33';$('st').style.color=sc;$('upd').textContent=ft(d.last_scan);
+ const cls=v=>v>0?'pos':v<0?'neg':'';
+ $('kpis').innerHTML=[['Bot equity',$$(d.equity)],['Reserve (banked)',$$(d.reserve)],['Total',$$(d.total)],['Return',`<span class="${cls(d.return_pct)}">${d.return_pct>=0?'+':''}${d.return_pct}%</span>`],['Drawdown',`<span class="${d.drawdown_pct>0?'neg':''}">${d.drawdown_pct}%</span>`],['Status',`<span style="color:${sc}">${s}</span>`],['Trades today',`${d.trades_today} / 2`],['Market regime',esc(d.regime||'—')]].map(([l,v])=>`<div class="card k"><div class="l">${l}</div><div class="v">${v}</div></div>`).join('');
+ const t=Math.max(d.total,1),p=Math.max(0,Math.min(100,Math.log10(t/d.start_equity)/Math.log10(d.goal/d.start_equity)*100));
+ $('gb').style.width=p.toFixed(2)+'%';$('gt').textContent=`${$$(d.total)} of $1,000,000 · ${p.toFixed(1)}% of the way (log) · ${(d.goal/t).toFixed(0)}x to go`;
+ const pts=d.equity_history.map(h=>({x:new Date(h.ts),y:+(h.equity+(h.reserve||0)).toFixed(2)}));
+ if(chart){chart.data.datasets[0].data=pts;chart.options.scales.y.type=scale;chart.update()}else chart=new Chart($('c'),{type:'line',data:{datasets:[{label:'Total equity',data:pts,borderColor:'#60a5fa',backgroundColor:'#60a5fa22',fill:true,tension:.25,pointRadius:2}]},
+ options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>$$(c.parsed.y)}}},scales:{x:{type:'time',ticks:{color:'#8b96ab'},grid:{color:'#1c2333'}},y:{type:scale,ticks:{color:'#8b96ab',callback:v=>'$'+v},grid:{color:'#1c2333'}}}}});
+ table(d.positions,$('pos'));table(d.trades,$('tr'),true);
+ $('sc').innerHTML=(d.strategy_changes.length?d.strategy_changes:['No changes yet']).map(x=>`<li>${esc(x)}</li>`).join('');
+ $('ac').innerHTML=d.activity.map(x=>`<li>${esc(x)}</li>`).join('')}
+async function load(){try{const r=await fetch('data.json?t='+Date.now(),{cache:'no-store'});render(await r.json())}catch(e){$('upd').textContent='load error, retrying'}}
+['lin','log'].forEach(id=>$(id).onclick=()=>{scale=id=='log'?'logarithmic':'linear';$('lin').classList.toggle('on',id=='lin');$('log').classList.toggle('on',id=='log');if(D)render(D)});
+load();setInterval(load,60000);
+</script></body></html>
