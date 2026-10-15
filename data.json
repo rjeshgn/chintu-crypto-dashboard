@@ -1,5 +1,6 @@
 {
  "activity": [
+  "2026-10-14T18:04:55-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:58:02-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:52:48-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:50:51-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
@@ -13,8 +14,7 @@
   "2026-10-14T17:07:53-07:00: Reconcile-only run (00:00Z 4h candle still open; next full scan after 04:00Z close). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
   "2026-10-14T17:01:27-07:00: Full scan of closed 4h candle 20:00Z (waited for 00:00Z close; candle was still open at 16:52 PT run start). Reconciled: USDT 97.778307 available, 0 hold, no open orders, no bot positions. Regime RISK-ON. Universe (USD pairs \u2265$20M 24h vol): BTC, ETH, SOL, XRP (DOGE/LINK/SUI <$20M; only BTC-USDT/ETH-USDT exist as USDT pairs, signals read from USD pairs). No signal: all four closed below 4h 20/50 EMA and below prior 4h high, RSI 33-38, vol/avg 0.84-1.23, daily close < 20D EMA; alts also fail RS vs BTC. No trade.",
   "2026-10-14T16:45:00-07:00: Reconcile-only run (20:00Z 4h candle still open). USDT 97.778307 available, 0 hold, no open orders, no positions. No action.",
-  "2026-10-14T16:37:36-07:00: Ledger fix: day_start_equity corrected from 100.0 to 97.78 (actual funded USDT) so the 5% daily-loss pause is measured correctly. Added last_scan / last_4h_candle_evaluated fields so 5-minute runs only do full setup scans on new 4h closes.",
-  "2026-10-14T16:37:36-07:00: Scan of 4h candle 16:00Z. Reconciled: USDT 97.778307 available, 0 hold, no open orders, no positions. Regime RISK-ON (daily) but every candidate (BTC, ETH, SOL, XRP, DOGE, LINK, SUI) trades below its 4h 20/50 EMA with RSI 33-39; no breakout (A) or pullback-reclaim (B) signal. No trade."
+  "2026-10-14T16:37:36-07:00: Ledger fix: day_start_equity corrected from 100.0 to 97.78 (actual funded USDT) so the 5% daily-loss pause is measured correctly. Added last_scan / last_4h_candle_evaluated fields so 5-minute runs only do full setup scans on new 4h closes."
  ],
  "drawdown_pct": 0.0,
  "equity": 97.78,
@@ -43,11 +43,16 @@
    "equity": 97.78,
    "reserve": 0.0,
    "ts": "2026-10-14T17:58:02-07:00"
+  },
+  {
+   "equity": 97.78,
+   "reserve": 0.0,
+   "ts": "2026-10-14T18:04:55-07:00"
   }
  ],
  "fees_paid": 0.0,
  "goal": 1000000,
- "last_scan": "2026-10-14T17:58:02-07:00",
+ "last_scan": "2026-10-14T18:04:55-07:00",
  "positions": [],
  "quote": "USDT",
  "regime": "RISK-ON",
